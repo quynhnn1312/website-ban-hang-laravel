@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
+use Session;
 
 
 class AdminCategoryController extends Controller
@@ -33,7 +34,7 @@ class AdminCategoryController extends Controller
     public function store(RequestCategory $requestCategory)
     {
         $this->insertOrUpdate($requestCategory);
-
+        Session::put('message', 'Thêm danh mục thành công !');
         return redirect()->back();
     }
 
@@ -46,7 +47,7 @@ class AdminCategoryController extends Controller
     public function update(RequestCategory $requestCategory, $id)
     {
         $this->insertOrUpdate($requestCategory, $id);
-
+        Session::put('message', 'Cập nhật danh mục thành công !');
         return redirect()->back();
     }
 

@@ -14,6 +14,11 @@
         </div>
         <!-- /.col -->
     </div>
+    <div class="row">
+        <div class="col-sm-10 mb-2 text-right">
+            <a class="btn btn-sm btn-outline-success" href="{{ route('admin.get.create.category') }}"><i class="fas fa-plus"></i> Thêm mới</a>
+        </div>
+    </div>
 @stop
 
 @section('content')

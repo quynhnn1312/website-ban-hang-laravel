@@ -18,7 +18,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-sm-12 mb-2">
+        <div class="col-sm-10 mb-2">
             <form class="form-inline" action="" >
                 @csrf
                 <div class="form-group">
@@ -27,12 +27,16 @@
                 <button type="submit" class="btn btn-default mb-2"><i class="fas fa-search"></i></button>
             </form>
         </div>
+        <div class="col-sm-2 mb-2">
+            <a class="btn btn-sm btn-outline-success" href="{{ route('admin.get.create.article') }}"><i class="fas fa-plus"></i> Thêm mới</a>
+        </div>
     </div>
     <table class="table">
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Tên bài viết</th>
+            <th scope="col">Hình ảnh</th>
             <th scope="col">Mô tả</th>
             <th scope="col">Trạng thái</th>
             <th scope="col">Ngày tạo</th>
@@ -45,6 +49,9 @@
                     <tr>
                         <td>{{ $article->id }}</td>
                         <td>{{ $article->ar_name }}</td>
+                        <td>
+                            <img src="{{ asset(pare_url_file($article->ar_avatar)) }}" width="150px" alt="">
+                        </td>
                         <td>{{ $article->ar_description }}</td>
                         <td>
                             <a href="{{ route('admin.get.action.article', ['status', $article->id]) }}" class="badge {{ $article->getStatus($article->ar_status)['class'] }}">{{ $article->getStatus($article->ar_status)['name'] }}</a>

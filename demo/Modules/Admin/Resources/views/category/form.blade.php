@@ -1,3 +1,14 @@
+@if(session()->has('message'))
+    <div style="color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session()->get('message') }}
+        {{ session()->put('message', null) }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <form action="" method="POST">
     @csrf
     <div class="form-group">

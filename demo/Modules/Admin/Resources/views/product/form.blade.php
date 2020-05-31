@@ -1,4 +1,15 @@
-<form action="" method="POST">
+@if(session()->has('message'))
+    <div style="color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session()->get('message') }}
+        {{ session()->put('message', null) }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+<form action="" method="POST" enctype="multipart/form-data" class="mb-5">
     @csrf
     <div class="row">
         <div class="col-sm-8">
@@ -22,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="name">Nội dung:</label>
-                <textarea name="pro_content" id="" class="form-control" cols="30" rows="3" placeholder="Nôi dung">{{ old('pro_content',isset($product->pro_content) ? $product->pro_content : '') }}</textarea>
+                <textarea name="pro_content" id="editor1" class="form-control" cols="30" rows="3" placeholder="Nôi dung">{{ old('pro_content',isset($product->pro_content) ? $product->pro_content : '') }}</textarea>
                 @if($errors->has('pro_content'))
                     <span class="error-text">
                         {{ $errors->first('pro_content') }}
@@ -71,17 +82,28 @@
                 <input type="number" class="form-control" value="{{ old('pro_sale',isset($product->pro_sale) ? $product->pro_sale : '') }}" placeholder="% giảm giá" name="pro_sale">
             </div>
             <div class="form-group">
-                <label for="name">Avatar:</label>
-                <input type="file" class="form-control" placeholder="Avatar" name="pr_avatar">
+                <img width="100%" id="out_img" src="{{ isset($product->pro_avatar) ? asset(pare_url_file($product->pro_avatar)) : asset('images/no_image.jpg') }}"  alt="">
             </div>
             <div class="form-group">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="pro_hot"> Nổi bật</label>
-                </div>
+                <label for="name">Avatar:</label>
+                <input type="file" id="input_img" class="form-control" placeholder="Avatar" name="pro_avatar">
             </div>
+            @if(!isset($product))
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="pro_hot"> Nổi bật</label>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
-
     <button type="submit" class="btn btn-sm btn-success"> {{ isset($product) ? 'Cập nhật sản phẩm' : 'Thêm sản phẩm' }} </button> &nbsp;
     <a href="{{ route('admin.get.list.product') }}" class="btn btn-sm btn-danger">Hủy</a>
 </form>
+
+@section('js')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'editor1' );
+    </script>
+@stop

@@ -7,6 +7,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Session;
 use Str;
 
 class AdminArticleController extends Controller
@@ -35,7 +36,7 @@ class AdminArticleController extends Controller
     public function store(RequestArticle $requestArticle)
     {
         $this->insertOrUpdate($requestArticle);
-
+        Session::put('message', 'Thêm mới tin tức thành công !');
         return redirect()->back();
     }
 
@@ -49,7 +50,7 @@ class AdminArticleController extends Controller
     public function  update(RequestArticle $requestArticle, $id)
     {
         $this->insertOrUpdate($requestArticle, $id);
-
+        Session::put('message', 'Cập nhật tin tức thành công !');
         return redirect()->back();
     }
 
@@ -66,6 +67,14 @@ class AdminArticleController extends Controller
         $article->ar_title_seo = $requestArticle->ar_title_seo ? $requestArticle->ar_title_seo : $requestArticle->ar_name;
         $article->ar_description_seo = $requestArticle->ar_description_seo;
 
+        if($requestArticle->hasFile('ar_avatar'))
+        {
+            $file = upload_image('ar_avatar');
+            if(isset($file['name']))
+            {
+                $article->ar_avatar = $file['name'];
+            }
+        }
         $article->save();
     }
 

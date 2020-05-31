@@ -18,9 +18,9 @@ class CreateArticlesTable extends Migration
             $table->string('ar_name')->nullable();
             $table->string('ar_slug')->index();
             $table->string('ar_description')->nullable();
-            $table->string('ar_content')->nullable();
+            $table->longText('ar_content')->nullable();
+            $table->string('ar_avatar')->nullable();
             $table->integer('ar_author_id')->default(0)->index();
-            $table->tinyInteger('ar_avatar')->nullable();
             $table->tinyInteger('ar_status')->default(1)->index();
             $table->string('ar_hot')->default(0);
             $table->string('ar_title_seo')->nullable();

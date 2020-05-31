@@ -22,5 +22,4 @@
             @include('admin::product.form')
         </div>
     </div>
-
 @stop
