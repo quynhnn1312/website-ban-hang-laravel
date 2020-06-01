@@ -167,39 +167,39 @@
                         <div class="circle-shopping expand">
                             <div class="shopping-carts text-right">
                                 <div class="cart-toggler">
-                                    <a href="#"><i class="icon-bag"></i></a>
-                                    <a href="#"><span class="cart-quantity">2</span></a>
+                                    <a href="{{ route('get.list.shopping.cart') }}"><i class="icon-bag"></i></a>
+                                    <a href="{{ route('get.list.shopping.cart') }}"><span class="cart-quantity">{{ Cart::count() }}</span></a>
                                 </div>
-                                <div class="restrain small-cart-content">
-                                    <ul class="cart-list">
-                                        <li>
-                                            <a class="sm-cart-product" href="product-details.html">
-                                                <img src="{{ asset('img/products/sm-products/cart1.jpg') }}" alt="">
-                                            </a>
-                                            <div class="small-cart-detail">
-                                                <a class="remove" href="#"><i class="fa fa-times-circle"></i></a>
-                                                <a href="#" class="edit-btn"><img src="{{ asset('img/btn_edit.gif') }}" alt="Edit Button" /></a>
-                                                <a class="small-cart-name" href="product-details.html">Voluptas nulla</a>
-                                                <span class="quantitys"><strong>1</strong>x<span>$75.00</span></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a class="sm-cart-product" href="product-details.html">
-                                                <img src="{{ asset('img/products/sm-products/cart2.jpg') }}" alt="">
-                                            </a>
-                                            <div class="small-cart-detail">
-                                                <a class="remove" href="#"><i class="fa fa-times-circle"></i></a>
-                                                <a href="#" class="edit-btn"><img src="{{ asset('img/btn_edit.gif') }}" alt="Edit Button" /></a>
-                                                <a class="small-cart-name" href="product-details.html">Donec ac tempus</a>
-                                                <span class="quantitys"><strong>1</strong>x<span>$75.00</span></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <p class="total">Subtotal: <span class="amount">$155.00</span></p>
-                                    <p class="buttons">
-                                        <a href="checkout.html" class="button">Checkout</a>
-                                    </p>
-                                </div>
+{{--                                <div class="restrain small-cart-content">--}}
+{{--                                    <ul class="cart-list">--}}
+{{--                                        <li>--}}
+{{--                                            <a class="sm-cart-product" href="product-details.html">--}}
+{{--                                                <img src="{{ asset('img/products/sm-products/cart1.jpg') }}" alt="">--}}
+{{--                                            </a>--}}
+{{--                                            <div class="small-cart-detail">--}}
+{{--                                                <a class="remove" href="#"><i class="fa fa-times-circle"></i></a>--}}
+{{--                                                <a href="#" class="edit-btn"><img src="{{ asset('img/btn_edit.gif') }}" alt="Edit Button" /></a>--}}
+{{--                                                <a class="small-cart-name" href="product-details.html">Voluptas nulla</a>--}}
+{{--                                                <span class="quantitys"><strong>1</strong>x<span>$75.00</span></span>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a class="sm-cart-product" href="product-details.html">--}}
+{{--                                                <img src="{{ asset('img/products/sm-products/cart2.jpg') }}" alt="">--}}
+{{--                                            </a>--}}
+{{--                                            <div class="small-cart-detail">--}}
+{{--                                                <a class="remove" href="#"><i class="fa fa-times-circle"></i></a>--}}
+{{--                                                <a href="#" class="edit-btn"><img src="{{ asset('img/btn_edit.gif') }}" alt="Edit Button" /></a>--}}
+{{--                                                <a class="small-cart-name" href="product-details.html">Donec ac tempus</a>--}}
+{{--                                                <span class="quantitys"><strong>1</strong>x<span>$75.00</span></span>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                    <p class="total">Subtotal: <span class="amount">$155.00</span></p>--}}
+{{--                                    <p class="buttons">--}}
+{{--                                        <a href="checkout.html" class="button">Checkout</a>--}}
+{{--                                    </p>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
