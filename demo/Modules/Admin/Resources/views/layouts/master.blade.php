@@ -209,6 +209,15 @@
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
+                        <a href="{{ route('admin.get.list.rating') }}"
+                           class="nav-link {{ \Request::route()->getName() == 'admin.get.list.rating' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-star-half-alt"></i>
+                            <p>
+                                Đánh giá
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
                         <a href="{{ route('admin.get.list.article') }}"
                            class="nav-link {{ \Request::route()->getName() == 'admin.get.list.article' ? 'active' : '' }}">
                             <i class="nav-icon far fa-newspaper"></i>
@@ -232,6 +241,15 @@
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Thành viên
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="{{ route('admin.get.list.contact') }}"
+                           class="nav-link {{ \Request::route()->getName() == 'admin.get.list.contact' ? 'active' : '' }}">
+                            <i class="nav-icon far fa-address-card"></i>
+                            <p>
+                                Liên hệ
                             </p>
                         </a>
                     </li>
@@ -314,6 +332,14 @@
 <script src="{{ asset('theme_admin/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('theme_admin/dist/js/demo.js') }}"></script>
+<style>
+    .alert-success{
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+</style>
+
 @yield('js')
 <script>
     function readURL(input) {

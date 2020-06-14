@@ -11,7 +11,12 @@
 |
 */
 
-Route::prefix('admin')->group(function() {
+Route::prefix('authenticate')->group(function (){
+    Route::get('/login', 'AdminAuthController@getLogin')->name('admin.login');
+    Route::post('/login', 'AdminAuthController@postLogin');
+});
+
+Route::prefix('admin')->middleware('check.login.admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
     Route::group(['prefix' => 'category'], function (){
         Route::get('/', 'AdminCategoryController@index')->name('admin.get.list.category');
@@ -43,11 +48,27 @@ Route::prefix('admin')->group(function() {
     //quan ly đơn hàng
     Route::group(['prefix' => 'transaction'], function (){
         Route::get('/', 'AdminTransactionController@index')->name('admin.get.list.transaction');
+        Route::get('/delete/{id}', 'AdminTransactionController@action')->name('admin.get.action.transaction');
+        Route::post('/view/{id}', 'AdminTransactionController@viewOrder')->name('admin.get.view.order');
+        Route::get('/active/{id}', 'AdminTransactionController@actionTransaction')->name('admin.get.active.transaction');
     });
 
     //quan ly user
     Route::group(['prefix' => 'user'], function (){
         Route::get('/', 'AdminUserController@index')->name('admin.get.list.user');
+    });
+
+    //quan ly rating
+    Route::group(['prefix' => 'rating'], function (){
+        Route::get('/', 'RatingController@index')->name('admin.get.list.rating');
+        Route::get('delete/{id}', 'RatingController@destroy')->name('admin.delete.rating');
+    });
+
+    //quan ly lien he
+    Route::group(['prefix' => 'contact'], function (){
+        Route::get('/', 'AdminContactController@index')->name('admin.get.list.contact');
+        Route::get('update/{id}', 'AdminContactController@update')->name('admin.update.contact');
+        Route::get('{action}/{id}', 'AdminContactController@action')->name('admin.action.contact');
     });
 
 });

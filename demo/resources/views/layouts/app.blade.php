@@ -6,7 +6,7 @@
     <title>Thế giới di động</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" >
     <!-- Favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -74,17 +74,35 @@
     <!-- responsive CSS
     ============================================ -->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
-
+    <style>
+        .error-text {
+            color: red;
+        }
+    </style>
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
 </head>
 <body class="home-one">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-
+@if(\Session::has('success'))
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Thành công!</strong> {{ \Session::get('success') }}
+    </div>
+@endif
+@if(\Session::has('warning'))
+    <div class="alert alert-warning alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Cảnh báo!</strong> {{ \Session::get('warning') }}
+    </div>
+@endif
+{{ \Session::put('success',null) }}
+{{ \Session::put('warning',null) }}
 <!-- Add your site or application content here -->
 <!-- header area start -->
 @include('components.header')
+
 <!-- header area end -->
 @yield('content')
 <!-- FOOTER START -->
@@ -141,5 +159,6 @@
 <!-- main js
 ============================================ -->
 <script src="{{ asset('js/main.js') }}"></script>
+@yield('js')
 </body>
 </html>

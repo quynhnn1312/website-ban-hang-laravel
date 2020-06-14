@@ -1,6 +1,12 @@
 @extends('admin::layouts.master')
 
 @section('content-header')
+    <style>
+        .rating .fa.active
+        {
+            color: #ff9705 !important;
+        }
+    </style>
     <div class="row mb-2">
         <div class="col-sm-6">
             <h1 class="m-0 text-dark">Quản lý sản phẩm</h1>
@@ -56,6 +62,13 @@
         <tbody>
         @if(isset($products))
             @foreach($products as $product)
+                <?php
+                    $age = 0;
+                    if($product->pro_total_rating)
+                    {
+                        $age =  round($product->pro_total_number/$product->pro_total_rating,2);
+                    }
+                ?>
                 <tr>
                     <td>{{ $product->id }}</td>
                     <td>
@@ -63,6 +76,16 @@
                         <ul style="padding-left: 16px">
                             <li><span><i class="fas fa-dollar-sign"></i> </span><span>12.000.000</span></li>
                             <li><span><i class="fas fa-dollar-sign"></i> </span><span>0%</span></li>
+                            <li>
+                                Đánh giá:
+                                <span class="rating">
+                                    @for($i = 1; $i<=5; $i++)
+                                        <i style="color: #999" class="fa fa-star {{$i <= $age ? 'active' : ''}} "></i>
+                                    @endfor
+                                </span>
+                                <span> {{ $age }}</span>
+                            </li>
+                            <li><span>Số lượng:</span>{{ $product->pro_number }}</li>
                         </ul>
                     </td>
                     <td>{{ isset($product->category->c_name) ? $product->category->c_name : [N\A] }}</td>

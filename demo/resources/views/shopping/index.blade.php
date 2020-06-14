@@ -20,7 +20,7 @@
             <tbody>
                 @if(isset($products))
                     @php($i=1)
-                    @foreach($products as $product)
+                    @foreach($products as $key => $product)
                         <tr>
                             <td>{{ $i }}</td>
                             <td>{{ $product->name}}</td>
@@ -32,7 +32,7 @@
                             <td>{{ number_format($product->qty * $product->price,0,',','.') }}</td>
                             <td>
                                 <a href=""><i class="fa fa-pencil"></i> Cập nhật</a> &nbsp;
-                                <a href=""><i class="fa fa-trash-o"></i> Xóa</a>
+                                <a href="{{ route('delete.shopping.cart', $key) }}"><i class="fa fa-trash-o"></i> Xóa</a>
                             </td>
                         </tr>
                         @php($i++)
@@ -40,6 +40,7 @@
                 @endif
             </tbody>
         </table>
+        <h4 class="pull-right">Tổng tiền cần thanh toán : {{ \Cart::total(0,3) }} <a class="btn btn-success" href="{{ route('get.form.pay') }}">Thanh toán</a></h4>
     </div>
 </div>
 @stop

@@ -82,6 +82,10 @@
                 <input type="number" class="form-control" value="{{ old('pro_sale',isset($product->pro_sale) ? $product->pro_sale : '') }}" placeholder="% giảm giá" name="pro_sale">
             </div>
             <div class="form-group">
+                <label for="name">Số lượng sản phẩm:</label>
+                <input type="number" class="form-control" value="{{ old('pro_number',isset($product->pro_number) ? $product->pro_number : '') }}" placeholder="Số lượng sản phẩm" name="pro_number">
+            </div>
+            <div class="form-group">
                 <img width="100%" id="out_img" src="{{ isset($product->pro_avatar) ? asset(pare_url_file($product->pro_avatar)) : asset('images/no_image.jpg') }}"  alt="">
             </div>
             <div class="form-group">
